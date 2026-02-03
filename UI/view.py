@@ -42,6 +42,12 @@ class View():
         self._ddStazArrivo = ft.Dropdown(label="Stazione di Arrivo", width=250)
         self._btnCalcola = ft.ElevatedButton(text="Calcola Raggiungibili", on_click=self._controller.handleCercaRaggiungibili)
 
+        #mi appoggio al controller, vado a popolare le dropdown, vado a creare funzione populate_dropdown nel controller
+        self._controller.populate_dropdown(self._ddStazPartenza)
+        self._controller.populate_dropdown(self._ddStazArrivo)
+
+
+
         row2 = ft.Row([self._btnCrea,
                        self._ddStazPartenza,
                        self._ddStazArrivo,

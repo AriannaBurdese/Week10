@@ -8,7 +8,17 @@ class Controller:
         self._model = model
 
     def handleCreaGrafo(self,e):
-        pass
+        self._model.creaGrafo()
+    
 
     def handleCercaRaggiungibili(self,e):
         pass
+
+    def populate_dropdown(self,dd):  #deve ricevere una dropdown
+        self._model.getAllFermate() #vado a prendere tutte le fermate dal Model, che si prende dal Dao
+        # le fermate le trovo nel model, in _lista_fermate
+
+        for fermata in self._model._lista_fermate:
+            dd.options.append(ft.dropdown.Option(key = fermata.id_fermata, #qui specifico cosa voglio come chiave, l'id che viene passato quando seleziono fermata dal dropdown
+                                                 text = fermata.nome)) #voglio avere una chiave e poi mostrare un testo nella dd
+
