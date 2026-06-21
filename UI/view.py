@@ -43,8 +43,10 @@ class View():
         self._btnCalcola = ft.ElevatedButton(text="Calcola Raggiungibili", on_click=self._controller.handleCercaRaggiungibili)
 
         #mi appoggio al controller, vado a popolare le dropdown, vado a creare funzione populate_dropdown nel controller
-        self._controller.populate_dropdown(self._ddStazPartenza)
+        self._controller.populate_dropdown(self._ddStazPartenza)  #metodo unico per popolare le dropdown tramite populate_dropdown, ora vado nel controller a creare funzioni populate_dropdown
         self._controller.populate_dropdown(self._ddStazArrivo)
+        #in questo caso gli passo dentro le parentesi il nome della dropdown perche ne ho due da popolare nello stesso modo, quindi uso stessa funzione per entrambi
+        #nella provaesame2 ho solo 1 dropdown quindi non scrivo niente nella parentesi
 
 
 

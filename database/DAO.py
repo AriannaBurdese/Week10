@@ -18,7 +18,8 @@ class DAO():
             print(row)
         cursor.close()
         conn.close()
-        return result #restituisco lista di oggetti Fermata DTO
+        return result #restituisco lista di oggetti Fermata (DTO)
+
     @staticmethod
     def existsConnessioneTra(u : Fermata,v : Fermata): #scrivendo u:Fermata dico a Pycharm che u e v sono delle fermate
         #verifica se esista una connessione tra nodo u e v
@@ -50,7 +51,7 @@ class DAO():
         query = ("""SELECT * 
                  FROM connessione c
                  where c.id_stazP = %s
-                 """)
+                 """) #prendo tutte le stazioni con quell'id
         cursor = conn.cursor(dictionary=True)
         cursor.execute(query, (u.id_fermata, ) ) #parametro con (,)
         for row in cursor:
@@ -86,9 +87,6 @@ class DAO():
         cursor.close()
         conn.close()
         return result
-
-
-
 
 
 

@@ -21,4 +21,4 @@ class Controller:
         for fermata in self._model._lista_fermate:
             dd.options.append(ft.dropdown.Option(key = fermata.id_fermata, #qui specifico cosa voglio come chiave, l'id che viene passato quando seleziono fermata dal dropdown
                                                  text = fermata.nome)) #voglio avere una chiave e poi mostrare un testo nella dd
-
+        #options è la pancia della dropdown

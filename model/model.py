@@ -25,25 +25,28 @@ class Model:
             self._grafo.add_node(fermata)
 
         #primo modo di aggiungere gli archi, con 619*619 query sql
+        #modo lento
             """"
         for u in self._grafo: #per ognuno dei 619 nodi
             for v in self._grafo: #per ognuno dei possibili nodi connessi
                 risultato = DAO.existsConnessioneTra(u, v) #chiedo al dao se esiste una connessione tra u e v
-                if(len(risultato) > 0): # c e almeno un arco
+                if(len(risultato) > 0): # c e almeno una connessione, e quindi creo un arco
                     self._grafo.add_edge(u, v) #creo arco
-                    print(f"Aggiunto arco tra {u} e {v}")"""
+                    print(f"Aggiunto arco tra {u} e {v}")
+
+        print(self._grafo)"""
 
 
-        #secondo modo, con 619 query a cercare i nodi vicini
+        #secondo modo, con 619 query a cercare i nodi vicini, riduciamo numero di query
         """
         conta = 0
-        for u in self._grafo:
+        for u in self._grafo: #per tutti i nodi del grafo
             connessioniAvicini = DAO.searchViciniAFermata(u)
             for connessione in connessioniAvicini:
                 fermataArrivo = self._dizionario_fermate[connessione.id_stazA]
                 self._grafo.add_edge(u,fermataArrivo)
                 print(f"Aggiunto arco tra {u} e {fermataArrivo}")
-                print(len(self._grafo.edges()))
+                print(len(self._grafo.edges())) #stampa per vedere di che tipo sono gli archi
         print(self._grafo)"""
 
         #terzo modo, con una query sola che estrae in un colpo solo tutte le conn
@@ -85,7 +88,7 @@ class Model:
             velocita = DAO.readVelocita(c._id_linea)
             print(f"Distanza: {distanza}, Velocita: {velocita}")
             tempo_perc = distanza / velocita * 60 #tempo percorrenza in minuti
-            self._grafo.add_edge(u_nodo, v_nodo, tempo = tempo_perc)
+            self._grafo.add_edge(u_nodo, v_nodo, tempo = tempo_perc) #il tempo sarebbe il peso
             print(f"Aggiunto arco tra {u_nodo} e {v_nodo}, tempo: {tempo_perc}")
 
         #print(self._grafo)
